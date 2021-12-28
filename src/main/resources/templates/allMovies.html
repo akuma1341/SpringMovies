@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>All movies</title>
+</head>
+<body>
+
+<p><a href="/">Main page</a></p>
+
+<p><a href="/movies/new">
+  <input type="button" value="Create new movie" />
+</a></p>
+
+<table border="1" style="width:300px">
+  <tr th:each="movie : ${movies}">
+
+    <td>
+      <div th:text="${movie.getId()}">ID</div>
+    </td>
+
+    <td>
+      <a th:href="@{/movies/{id}(id=${movie.getId()})}"
+         th:text="${movie.getTitle()}">
+        Director
+      </a>
+    </td>
+
+    <td>
+      <div th:text="${movie.getRating()}">Rating</div>
+    </td>
+
+    <td>
+      <div th:text="${movie.getDirector().getName()}">Director</div>
+    </td>
+
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Director</title>
+</head>
+<body>
+
+<p>
+    <a href="/directors">All directors</a>
+</p>
+
+<hr>
+
+<h3>Director info</h3>
+
+<p th:text="'ID: ' + ${director.getId()}">value</p>
+<p th:text="'Name: ' + ${director.getName()}">value</p>
+
+<h3>Movies:</h3>
+<table border="1" style="width:300px">
+    <tr th:each="movie : ${director.getMoviesSet()}">
+        <td>
+            <a th:href="@{/movies/{id}(id=${movie.getId()})}"
+               th:text="${movie.title}">
+                Movie
+            </a>
+        </td>
+    </tr>
+</table>
+
+<hr>
+
+<p>
+    <a th:href="@{/directors/{id}/editDirector(id=${director.getId()})}">Edit</a>
+</p>
+
+<div>
+    <form th:method="POST" th:action="@{/directors/{id}/delete(id=${director.getId()})}">
+        <input type="submit" value="Delete">
+    </form>
+</div>
+
+</body>
+</html>

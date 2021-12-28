@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>New movie</title>
+</head>
+<body>
+<form th:method="POST" th:action="@{/movies/createMovie}" th:object="${movie}">
+    <p>
+        <label for="title">Enter title</label>
+        <input type="text" th:field="*{title}" id="title">
+    </p>
+
+    <p>
+        <label for="rating">Enter rating</label>
+        <input type="text" th:field="*{rating}" id="rating">
+    </p>
+
+    <p>
+        <label for="description">Enter description</label>
+        <input type="text" th:field="*{description}" id="description">
+    </p>
+
+    <p>
+        <label for="theDirector">Choose director: </label>
+        <select th:field="*{director}" name="select" id="theDirector">
+            <option th:each="currentDirector : ${directors}" th:text="${currentDirector.getName()}" th:value="${currentDirector.getId()}">Director</option>
+        </select>
+    </p>
+
+    <div>
+        <label>Choose actors:</label>
+        <ul>
+            <li th:each="actor : ${actors}">
+                <input type="checkbox" th:id="${actor.id}" th:value="${actor.id}" th:field="*{actorsSet}" />
+                <span th:text="${actor.name}"></span>
+            </li>
+        </ul>
+    </div>
+
+    <div>
+        <label>Choose genres:</label>
+        <ul>
+            <li th:each="genre : ${genres}">
+                <input type="checkbox" th:id="${genre.id}" th:value="${genre.id}" th:field="*{genresSet}" />
+                <span th:text="${genre.name}"></span>
+            </li>
+        </ul>
+    </div>
+
+    <div>
+        <label>Choose writers:</label>
+        <ul>
+            <li th:each="writer : ${writers}">
+                <input type="checkbox" th:id="${writer.id}" th:value="${writer.id}" th:field="*{writersSet}" />
+                <span th:text="${writer.name}"></span>
+            </li>
+        </ul>
+    </div>
+
+    <input type="submit" value="Create"/>
+</form>
+</body>
+</html>

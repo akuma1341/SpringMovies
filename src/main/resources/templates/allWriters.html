@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>All writers</title>
+</head>
+<body>
+<p><a href="/">Main page</a></p>
+
+<p><a href="/writers/new">
+  <input type="button" value="Create new writer" />
+</a></p>
+
+<table border="1" style="width:300px">
+  <tr th:each="writer : ${writers}">
+    <td>
+      <a th:href="@{/writers/{id}(id=${writer.getId()})}"
+         th:text="${writer.getId()} + '. ' + ${writer.getName()}">
+        Genre
+      </a>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

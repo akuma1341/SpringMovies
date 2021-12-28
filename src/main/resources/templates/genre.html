@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Genre</title>
+</head>
+<body>
+
+<p>
+  <a href="/genres">All genres</a>
+</p>
+
+<hr>
+
+<h3>Genre info</h3>
+
+<p th:text="'ID: ' + ${genre.getId()}">value</p>
+<p th:text="'Name: ' + ${genre.getName()}">value</p>
+
+<h3>Movies:</h3>
+<table border="1" style="width:300px">
+  <tr th:each="movie : ${genre.getMoviesSet()}">
+    <td>
+      <a th:href="@{/movies/{id}(id=${movie.getId()})}"
+         th:text="${movie.title}">
+        Movie
+      </a>
+    </td>
+  </tr>
+</table>
+
+<hr>
+
+<p>
+  <a th:href="@{/genres/{id}/editGenre(id=${genre.getId()})}">Edit</a>
+</p>
+
+<div>
+  <form th:method="POST" th:action="@{/genres/{id}/delete(id=${genre.getId()})}">
+    <input type="submit" value="Delete">
+  </form>
+</div>
+
+</body>
+</html>

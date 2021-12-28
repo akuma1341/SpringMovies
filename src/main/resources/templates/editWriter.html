@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit writer</title>
+</head>
+<body>
+
+<form th:action="@{/writers/{id}/updateWriter(id=${writer.getId()})}" th:method="POST" th:object="${writer}">
+  <label for="name">Enter name: </label>
+  <input type="text" th:field="*{name}" id="name"/>
+  <br><br>
+  <input type="submit" value="Update">
+</form>
+
+</body>
+</html>

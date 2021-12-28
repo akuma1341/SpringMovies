@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Movie</title>
+</head>
+<body>
+
+<p>
+  <a href="/movies">All movies</a>
+</p>
+
+<hr>
+
+<h2>Movie info</h2>
+
+<p th:text="'ID: ' + ${movie.getId()}">value</p>
+<p th:text="'Title: ' + ${movie.getTitle()}">value</p>
+<p th:text="'Rating: ' + ${movie.getRating()}">value</p>
+<p th:text="'Description: ' + ${movie.getDescription()}">value</p>
+<p th:text="'Director: ' + ${movie.getDirector().getName()}">value</p>
+
+<h3>Actors:</h3>
+<table border="1" style="width:300px">
+  <tr th:each="actor : ${movie.getActorsSet()}">
+    <td>
+      <a th:href="@{/actors/{id}(id=${actor.getId()})}"
+         th:text="${actor.name}">
+        Actor
+      </a>
+    </td>
+  </tr>
+</table>
+
+<h3>Genres:</h3>
+<table border="1" style="width:300px">
+  <tr th:each="genre : ${movie.getGenresSet()}">
+    <td>
+      <a th:href="@{/genres/{id}(id=${genre.getId()})}"
+         th:text="${genre.name}">
+        Genre
+      </a>
+    </td>
+  </tr>
+</table>
+
+<h3>Writers:</h3>
+<table border="1" style="width:300px">
+  <tr th:each="writer : ${movie.getWritersSet()}">
+    <td>
+      <a th:href="@{/writers/{id}(id=${writer.getId()})}"
+         th:text="${writer.name}">
+        Writer
+      </a>
+    </td>
+  </tr>
+</table>
+
+<hr>
+
+<p>
+  <a th:href="@{/movies/{id}/editMovie(id=${movie.getId()})}">Edit</a>
+</p>
+
+<div>
+  <form th:method="POST" th:action="@{/movies/{id}/delete(id=${movie.getId()})}">
+    <input type="submit" value="Delete">
+  </form>
+</div>
+
+</body>
+</html>

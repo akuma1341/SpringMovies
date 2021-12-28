@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>All directors</title>
+</head>
+<body>
+
+<p><a href="/">Main page</a></p>
+
+<p><a href="/directors/new">
+    <input type="button" value="Create new director" />
+</a></p>
+
+<table border="1" style="width:300px">
+    <tr th:each="director : ${directors}">
+        <td>
+            <a th:href="@{/directors/{id}(id=${director.getId()})}"
+               th:text="${director.getId()} + '. ' + ${director.getName()}">
+                Director
+            </a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

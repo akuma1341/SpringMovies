@@ -1,13 +1,11 @@
 package com.example.springmovies.controllers;
 
-import com.example.springmovies.entities.Actors;
 import com.example.springmovies.entities.Movies;
 import com.example.springmovies.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/movies")
